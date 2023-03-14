@@ -10,7 +10,7 @@ Also quite easy. I set this up some time ago; the one I am using is pretty much 
 If you don’t currently have one, the peg github says that the layout.json can be configured to generate a boot.py, though I did not try it.
 
 # main.py
-This one was more involved. First, pull up one of the defaults from the [Peg github](https://github.com/boardsource/pegBoards); Ideally, one that is similar to the one you want to port. I based my code off the code for the Boardsource 4x12. I took the module/extension handling bits in my main.py and replaced it with the stuff shown below.
+This one was more involved. First, I opened one of the defaults from the [Peg github](https://github.com/boardsource/pegBoards) I based my main.py off the provided code for the Boardsource 4x12. I took the module/extension handling bits in my main.py and replaced it with the stuff shown below.
 
     from kb import KMKKeyboard
     from kmk.keys import KC
@@ -38,8 +38,7 @@ to
 
 After that, I essentially nuked everything except for the keyboard.keymap section. Peg is unable to process substituted key names so all of them had to go. I then setup 8 empty layers under keyboard.keymap as so:
 
-    keyboard.keymap = [
-    [], 
+    keyboard.keymap = [ [], 
     [], 
     [], 
     [], 
@@ -48,10 +47,10 @@ After that, I essentially nuked everything except for the keyboard.keymap sectio
     [], 
     [] ]
 
-The last part is to setup a default/first layer under keyboard.keymap. Again, Peg is unable to process custom keycodes so the layer must be a minimum working layer for your keyboard that uses stock KMK keycodes. Mine looked like:
+The last part is to setup a default/first layer under keyboard.keymap. Again, Peg is unable to process custom keycodes so the layer must be a minimum working layer for your keyboard that uses [**stock KMK keycodes**.](https://github.com/KMKfw/kmk_firmware/blob/master/docs/en/keycodes.md) Mine looked like:
 
     # keymap
-    keyboard.keymap = [ [KC.ESCAPE,KC.Y,KC.P,KC.O,KC.U,KC.J,KC.K,KC.D,KC.L,KC.C,KC.W,KC.ENTER,KC.TAB,KC.I,KC.N,KC.E,KC.A,KC.COMMA,KC.M,KC.H,KC.T,KC.S,KC.R,KC.TAB,KC.CAPSLOCK,KC.Q,KC.Z,KC.SLASH,KC.DOT,KC.SCOLON,KC.F5,KC.B,KC.F,KC.G,KC.V,KC.X,KC.NO,KC.LGUI,KC.LALT,KC.DELETE,KC.RSHIFT,KC.SPC,KC.BSPC,KC.RALT,KC.RGUI,KC.NO], 
+    keyboard.keymap = [ [KC.ESCAPE,KC.Y,KC.P,KC.O,KC.U,KC.J,KC.K,KC.D,KC.L,KC.C,KC.W,KC.ENTER,KC.TAB,KC.I,KC.N,KC.E,KC.A,KC.COMMA,KC.M,KC.H,KC.T,KC.S,KC.R,KC.TAB,KC.CAPSLOCK,KC.Q,KC.Z,KC.SLASH,KC.DOT,KC.SCOLON,KC.F5,KC.B,KC.F,KC.G,KC.V,KC.X,KC.NO,KC.LGUI,KC.LALT,KC.DELETE,KC.RSHIFT,KC.SPC,KC.BSPC,KC.RALT,KC.RGUI], 
     [], 
     [], 
     [], 
@@ -93,7 +92,6 @@ Here is what my finished main.py looked like:
         keyboard.go(hid_type=HIDModes.USB)
 
 # layout.json
-
 This is the last part. I once again started with the one for the Boardsource 4x12 from the [Peg github](https://github.com/boardsource/pegBoards). In a text editor, I first edited the features heading to reflect my keyboard; “bootSize” was set to 0 since I had a working boot.py and the “name” and “creator” fields were changed as follows:
 
     "features": {
@@ -170,7 +168,7 @@ in the sample json with the one from [https://qmk.fm/converter/](https://qmk.fm/
                {"w": 1, "x":8.5, "y":3}, 
                {"w": 1, "x":9.5, "y":3}
             ],
-
+#  Finishing up
 Once this is finished, load your boot.py, main.py, kb.py and layout.json onto your keyboard and launch Peg. After it detects your keyboard, you should be greeted by your default layer mapped to your physical layout. From here, you need to enable dev mode under settings to be able to add custom keys.  You should now be able to drag and drop letters etc. onto the virtual keyboard and click “save map” to save the mapping to your keyboard.
 
 At this point, I tried adding some custom keys and they mostly worked; if it was supported by the modules and extensions in the main.py, it was accepted without issue, but if I tried adding a module/extension to the main.py, saving and then trying to add a custom key using it, the keyboard would stop working. Because of that, I still prefer to use a text editor to remap my keyboard.
