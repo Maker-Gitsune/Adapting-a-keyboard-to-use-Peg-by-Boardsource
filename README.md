@@ -170,7 +170,7 @@ in the sample json with the one from [QMK JSON converter](https://qmk.fm/convert
             ],
 #  Finishing up
 Once this is finished, load your boot.py, main.py, kb.py and layout.json onto your keyboard and launch Peg. After it detects your keyboard, you should be greeted by your default layer mapped to your physical layout. From here, you need to enable dev mode under settings to be able to add custom keys.  You should now be able to drag and drop letters etc. onto the virtual keyboard and click “save map” to save the mapping to your keyboard.
-
+![It (mostly) works](/images/mostly_working.png)
 At this point, I tried adding some custom keys and they mostly worked; if it was supported by the modules and extensions in the main.py, it was accepted without issue, but if I tried adding a module/extension to the main.py, saving and then trying to add a custom key using it, the keyboard would stop working. Because of that, I still prefer to use a text editor to remap my keyboard.
 
 The code in the examples is [here](https://github.com/Maker-Gitsune/The-Splaynck/tree/main/Splaynck%20code/Peg%20stuff).
