@@ -92,7 +92,7 @@ Here is what my finished main.py looked like:
         keyboard.go(hid_type=HIDModes.USB)
 
 # layout.json
-This is the last part. I once again started with the one for the [Boardsource 4x12](https://github.com/boardsource/pegBoards/tree/main/keyboards/Boardsource-4x12-blok) after some unsuccesful attempts. In a text editor, I first edited the features heading to reflect my keyboard; “bootSize” was set to 0 since I had a working boot.py and the “name” and “creator” fields were changed as follows:
+This is the last part. I once again started with the one for the [Boardsource 4x12](https://github.com/boardsource/pegBoards/tree/main/keyboards/Boardsource-4x12-blok). In a text editor, I first edited the features heading to reflect my keyboard; “bootSize” was set to 0 since I had a working boot.py and the “name” and “creator” fields were changed as follows:
 
     "features": {
             "perkey": false,
