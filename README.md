@@ -1,5 +1,5 @@
 # How to adapt a keyboard to use Peg
-During Spring break 2023, I spent an afternoon porting [my keyboard](https://github.com/Maker-Gitsune/The-Splaynck) to use Peg. The process was not that hard, but I felt I could have been faster since I though the existing documentation was a bit sparse and was trying to apply what I saw in the github repo’s prebuilt code. The process is pretty straightforward; If you have a keyboard setup to use KMK, all that is needed is: a .json file which describes the physical key layout and optionally, and a boot.py, which disables the drive function except for when a specific key is held upon plugging in. After downloading Peg, here are the programs in the order I did them:
+During Spring break 2023, I spent an afternoon porting [my keyboard](https://github.com/Maker-Gitsune/The-Splaynck) to use [Peg](https://peg.software/). The process was not that hard, but I felt I could have been faster since I thought the existing documentation was a bit sparse and was trying to apply what I saw in the github repo’s prebuilt code to my current code. The process is pretty straightforward; If you have a keyboard setup to use KMK, all that is needed is: a .json file which describes the physical key layout and optionally, and a boot.py, which disables the drive function except for when a specific key is held upon plugging in. After downloading Peg, here are the programs in the order I did them:
 
 # kb.py
 The easiest part. I was able to use my current one without modification. If it does not work, try comparing it with one for a similar keyboard from the [Peg github](https://github.com/boardsource/pegBoards) and going from there.
@@ -92,7 +92,7 @@ Here is what my finished main.py looked like:
         keyboard.go(hid_type=HIDModes.USB)
 
 # layout.json
-This is the last part. I once again started with the one for the [Boardsource 4x12](https://github.com/boardsource/pegBoards/tree/main/keyboards/Boardsource-4x12-blok). In a text editor, I first edited the features heading to reflect my keyboard; “bootSize” was set to 0 since I had a working boot.py and the “name” and “creator” fields were changed as follows:
+This is the last part. I once again started with the one for the [Boardsource 4x12](https://github.com/boardsource/pegBoards/tree/main/keyboards/Boardsource-4x12-blok) after some unsuccesful attempts. In a text editor, I first edited the features heading to reflect my keyboard; “bootSize” was set to 0 since I had a working boot.py and the “name” and “creator” fields were changed as follows:
 
     "features": {
             "perkey": false,
