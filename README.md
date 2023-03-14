@@ -10,7 +10,7 @@ Also quite easy. I set this up some time ago; the one I am using is pretty much 
 If you don’t currently have one, the peg github says that the layout.json can be configured to generate a boot.py, though I did not try it.
 
 # main.py
-This one was more involved. First, I opened one of the defaults from the [Peg github](https://github.com/boardsource/pegBoards) I based my main.py off the provided code for the Boardsource 4x12. I took the module/extension handling bits in my main.py and replaced it with the stuff shown below.
+This one was more involved. After several unsuccesful trial and errors, I based my main.py off the provided code for the [Boardsource 4x12](https://github.com/boardsource/pegBoards/tree/main/keyboards/Boardsource-4x12-blok). I took the module/extension handling bits in my main.py and replaced it with the stuff shown below.
 
     from kb import KMKKeyboard
     from kmk.keys import KC
@@ -36,7 +36,7 @@ to
     if __name__ == '__main__': 
         keyboard.go(hid_type=HIDModes.USB)
 
-After that, I essentially nuked everything except for the keyboard.keymap section. Peg is unable to process substituted key names so all of them had to go. I then setup 8 empty layers under keyboard.keymap as so:
+After that, I essentially nuked everything except for the keyboard.keymap section. The official documentation says that Peg is unable to process substituted key names so all of them had to go. I then setup 8 empty layers under keyboard.keymap as instructed in the official documentation:
 
     keyboard.keymap = [ [], 
     [], 
@@ -92,7 +92,7 @@ Here is what my finished main.py looked like:
         keyboard.go(hid_type=HIDModes.USB)
 
 # layout.json
-This is the last part. I once again started with the one for the Boardsource 4x12 from the [Peg github](https://github.com/boardsource/pegBoards). In a text editor, I first edited the features heading to reflect my keyboard; “bootSize” was set to 0 since I had a working boot.py and the “name” and “creator” fields were changed as follows:
+This is the last part. I once again started with the one for the [Boardsource 4x12](https://github.com/boardsource/pegBoards/tree/main/keyboards/Boardsource-4x12-blok). In a text editor, I first edited the features heading to reflect my keyboard; “bootSize” was set to 0 since I had a working boot.py and the “name” and “creator” fields were changed as follows:
 
     "features": {
             "perkey": false,
@@ -113,14 +113,14 @@ This is the last part. I once again started with the one for the Boardsource 4x1
             "bootSize": 0
         },
 
-I went to [KLE](http://www.keyboard-layout-editor.com/) and constructed the layout of my keyboard. Do not use the export json option on KLE. The resulting json is not in the same order as the ones on the Peg github. Instead, once you have constructed the physical layout (without legends), go under the “raw data" tab and copy everything into [https://qmk.fm/converter/](https://qmk.fm/converter/) and click convert.
+I went to [KLE](http://www.keyboard-layout-editor.com/) and constructed the layout of my keyboard. Do not use the export json option on KLE. The resulting json is not in the same order as the ones on the Peg github. Instead, once you have constructed the physical layout (without legends), go under the “raw data" tab and copy everything into [QMK JSON converter](https://qmk.fm/converter/) and click convert.
 
 Replace the
 
     "layout": [
                 ],
 
-in the sample json with the one from [https://qmk.fm/converter/](https://qmk.fm/converter/). You need to add information to this, specifically the size of the keys (I’m not sure if it is possible to specify keys taller than 1u). To do this, add to each set of brackets; it must be in the format {“w”: “x”: “y”:} as shown below:
+in the sample json with the one from [QMK JSON converter](https://qmk.fm/converter/). You need to add information to this, specifically the size of the keys (I’m not sure if it is possible to specify keys taller than 1u). To do this, add to each set of brackets; it must be in the format {“w”: “x”: “y”:} as shown below:
 
     "layout": [{"w":1.5, "x":0, "y":0},
                {"w": 1, "x":1.5, "y":0}, 
